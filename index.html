@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXORA — Student Learning Platform</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast"></div>
+
+<!-- AUTH -->
+<section id="authScreen" class="screen auth-screen">
+  <div class="auth-card">
+    <div class="brand large"><span>N</span> NEXORA</div>
+    <p class="eyebrow">STUDENT LEARNING PLATFORM</p>
+    <h1 id="authTitle">Welcome back</h1>
+    <p id="authSub">Sign in to continue your saved progress.</p>
+
+    <form id="loginForm" class="auth-form">
+      <input id="loginEmail" type="email" placeholder="Email" required>
+      <input id="loginPassword" type="password" placeholder="Password" required>
+      <button class="btn primary" type="submit">Log in</button>
+    </form>
+
+    <form id="signupForm" class="auth-form hidden">
+      <input id="signupName" placeholder="Full name" required>
+      <input id="signupEmail" type="email" placeholder="Email" required>
+      <input id="signupPassword" type="password" minlength="6" placeholder="Password (6+ characters)" required>
+      <select id="signupBranch">
+        <option>AI & Data Science</option>
+        <option>Computer Science</option>
+        <option>Cyber Security</option>
+        <option>Other</option>
+      </select>
+      <button class="btn primary" type="submit">Create account</button>
+    </form>
+
+    <button id="demoLogin" class="btn google">Continue with demo account</button>
+    <p class="switch"><span id="switchText">New user?</span> <button id="switchAuth" type="button">Create account</button></p>
+    <small class="muted">This version works offline. Account data is stored in this browser.</small>
+  </div>
+</section>
+
+<!-- APP -->
+<div id="app" class="hidden">
+<header class="topbar">
+  <button id="brandHome" class="brand"><span>N</span> NEXORA</button>
+  <nav class="desktop-nav">
+    <button data-page="home">Home</button>
+    <button data-page="learn">Learn</button>
+    <button data-page="build">Build</button>
+    <button data-page="lab">Code Lab</button>
+    <button data-page="career">Career</button>
+    <button data-page="resources">Resources</button>
+    <button data-page="dashboard">Progress</button>
+  </nav>
+  <div class="top-actions">
+    <button id="profileBtn" class="outline">Profile</button>
+    <button id="logoutBtn" class="logout">Log out</button>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="hero">
+    <span class="pill">NEXORA STUDENT OS</span>
+    <h2>Learn anything.<br><em>Build anything.</em></h2>
+    <p>Learn topics, create project plans, run code, build resumes and explore trusted resources — all in one place.</p>
+    <div class="hero-actions">
+      <button class="btn primary" data-page="learn">Start Learning</button>
+      <button class="btn outline" data-page="build">Build a Project</button>
+    </div>
+  </div>
+
+  <div class="feature-grid">
+    <button class="feature-card" data-page="learn">
+      <strong>📚 Learn</strong>
+      <span>Full structured lessons, important points, practice and revision.</span>
+      <small>Open Learn →</small>
+    </button>
+    <button class="feature-card" data-page="build">
+      <strong>💡 Build</strong>
+      <span>Project ideas, architecture, file structure and development plans.</span>
+      <small>Open Builder →</small>
+    </button>
+    <button class="feature-card" data-page="lab">
+      <strong>💻 Code Lab</strong>
+      <span>Write and run HTML, CSS and JavaScript with a real browser preview.</span>
+      <small>Open Code Lab →</small>
+    </button>
+    <button class="feature-card" data-page="career">
+      <strong>📄 Career</strong>
+      <span>Create a professional resume and print or save it as PDF.</span>
+      <small>Open Resume →</small>
+    </button>
+  </div>
+</section>
+
+<!-- LEARN -->
+<section id="learn" class="page">
+  <div class="section-head"><p class="eyebrow">LEARN</p><h2>Understand topics <em>deeply.</em></h2><p>Enter a topic. The built-in guide creates a complete study structure.</p></div>
+  <div class="split">
+    <div class="panel controls">
+      <label>Topic</label>
+      <input id="topicInput" placeholder="Example: Python">
+      <label>Level</label>
+      <select id="topicLevel"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select>
+      <button id="generateLesson" class="btn primary full">Generate Lesson</button>
+      <button id="downloadLesson" class="btn outline full">Download Notes</button>
+    </div>
+    <article id="lessonOutput" class="panel output">
+      <div class="placeholder">📚<h3>Your lesson will appear here</h3><p>Enter a topic and press Generate Lesson.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- BUILD -->
+<section id="build" class="page">
+  <div class="section-head"><p class="eyebrow">PROJECT BUILDER</p><h2>Turn ideas into <em>projects.</em></h2></div>
+  <div class="split">
+    <div class="panel controls">
+      <label>Project idea</label>
+      <textarea id="projectIdea" placeholder="Example: Student attendance management system"></textarea>
+      <label>Technology</label>
+      <select id="projectTech"><option>HTML + CSS + JavaScript</option><option>Python</option><option>Python + FastAPI</option><option>React + Node.js</option></select>
+      <label>Difficulty</label>
+      <select id="projectLevel"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select>
+      <button id="generateProject" class="btn primary full">Create Project Plan</button>
+    </div>
+    <article id="projectOutput" class="panel output">
+      <div class="placeholder">💡<h3>Your project plan will appear here</h3><p>Describe what you want to build.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- CODE LAB -->
+<section id="lab" class="page">
+  <div class="section-head"><p class="eyebrow">CODE LAB</p><h2>Write. Run. <em>See.</em></h2><p>This browser lab executes HTML/CSS/JavaScript directly.</p></div>
+  <div class="lab-grid">
+    <div class="panel editor-panel">
+      <div class="panel-bar"><b>HTML / CSS / JAVASCRIPT</b><button id="runCode" class="mini">▶ Run</button></div>
+      <textarea id="codeEditor"><!doctype html>
+<html>
+<head>
+<style>
+body{font-family:Arial;padding:30px;background:#111827;color:white}
+button{padding:10px 15px;border:0;border-radius:8px}
+</style>
+</head>
+<body>
+<h1>NEXORA 🚀</h1>
+<p id="message">Your code is running.</p>
+<button onclick="document.getElementById('message').textContent='It works!'">Click me</button>
+</body>
+</html></textarea>
+    </div>
+    <div class="panel">
+      <div class="panel-bar"><b>LIVE OUTPUT</b><button id="clearOutput" class="mini">Clear</button></div>
+      <iframe id="codePreview" sandbox="allow-scripts"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="career" class="page">
+  <div class="section-head"><p class="eyebrow">CAREER</p><h2>Professional <em>resume.</em></h2></div>
+  <div class="split">
+    <div class="panel controls">
+      <label>Name</label><input id="resumeName">
+      <label>Professional title</label><input id="resumeTitle" placeholder="AI & Data Science Student">
+      <label>Email</label><input id="resumeEmail">
+      <label>Phone</label><input id="resumePhone">
+      <label>Skills</label><textarea id="resumeSkills" placeholder="Python, SQL, JavaScript..."></textarea>
+      <label>Education</label><textarea id="resumeEducation"></textarea>
+      <label>Projects</label><textarea id="resumeProjects"></textarea>
+      <label>Experience / Certifications</label><textarea id="resumeExperience"></textarea>
+      <button id="previewResume" class="btn primary full">Update Resume</button>
+      <button id="printResume" class="btn outline full">Print / Save PDF</button>
+    </div>
+    <article id="resumePreview" class="resume-paper">
+      <div class="placeholder">📄<h3>Resume preview</h3><p>Fill the form and press Update Resume.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section id="resources" class="page">
+  <div class="section-head"><p class="eyebrow">RESOURCES</p><h2>Go <em>deeper.</em></h2><p>Official documentation and trusted learning websites.</p></div>
+  <div id="resourceGrid" class="resource-grid"></div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+  <div class="section-head"><p class="eyebrow">PROGRESS</p><h2>Welcome, <em id="welcomeName">Student</em>.</h2></div>
+  <div class="stats">
+    <div><small>TOPICS</small><strong id="topicCount">0</strong></div>
+    <div><small>PROJECTS</small><strong id="projectCount">0</strong></div>
+    <div><small>RESUMES</small><strong id="resumeCount">0</strong></div>
+  </div>
+  <div class="panel"><h3>Saved projects</h3><div id="savedProjects"></div></div>
+</section>
+</main>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <button data-page="home">⌂<span>Home</span></button>
+  <button data-page="learn">📚<span>Learn</span></button>
+  <button data-page="build">💡<span>Build</span></button>
+  <button data-page="lab">💻<span>Code</span></button>
+  <button data-page="career">📄<span>Career</span></button>
+</nav>
+
+<footer><span>© 2026 NEXORA</span><span>LEARN · BUILD · GROW</span></footer>
+</div>
+
+<!-- PROFILE MODAL -->
+<div id="profileModal" class="modal">
+  <div class="modal-card">
+    <button id="closeProfile" class="close">×</button>
+    <h2>Profile</h2>
+    <label>Name</label><input id="profileName">
+    <label>Branch</label><input id="profileBranch">
+    <label>Email</label><input id="profileEmail" type="email">
+    <button id="saveProfile" class="btn primary full">Save Profile</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
